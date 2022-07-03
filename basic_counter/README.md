@@ -1,6 +1,6 @@
 # basic_counter
 
-A new Flutter project.
+A basic counter Flutter project.
 
 ## Getting Started
 
