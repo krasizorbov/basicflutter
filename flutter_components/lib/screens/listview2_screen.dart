@@ -16,9 +16,9 @@ class Listview2Screen extends StatelessWidget {
         body: ListView.separated(
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
-              leading: const Icon(Icons.list_alt_rounded, color:  Colors.indigo),
+              leading: const Icon(Icons.list_alt_rounded, color: Colors.indigo),
               title: Text(options[index]),
-              trailing: const Icon(Icons.arrow_circle_right_outlined, color:  Colors.indigo),
+              trailing: const Icon(Icons.arrow_circle_right_outlined, color: Colors.indigo),
               onTap: () {},
             );
           },
