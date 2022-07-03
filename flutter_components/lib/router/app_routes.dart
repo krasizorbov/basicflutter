@@ -35,13 +35,16 @@ class AppRoutes {
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {};
-     appRoutes.addAll({ 'home' : ( BuildContext context ) => const HomeScreen() });
+
+    appRoutes.addAll({ 'home' : ( BuildContext context ) => const HomeScreen() });
+
     for (final element in menuOptions) {
       appRoutes
           .addAll({element.route: (BuildContext context) => element.screen});
     }
     return appRoutes;
   }
+  
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => const Listview2Screen());
   }
