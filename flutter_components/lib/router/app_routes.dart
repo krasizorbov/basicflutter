@@ -6,11 +6,11 @@ class AppRoutes {
   static const initialRoute = 'home';
   static final menuOptions = <MenuOption>[
     // ToDo erase home
-    MenuOption(
-        route: 'home',
-        name: 'Home',
-        screen: const HomeScreen(),
-        icon: Icons.home_mini),
+    // MenuOption(
+    //     route: 'home',
+    //     name: 'Home',
+    //     screen: const HomeScreen(),
+    //     icon: Icons.home_mini),
     MenuOption(
         route: 'listview1',
         name: 'List View type 1',
@@ -35,6 +35,7 @@ class AppRoutes {
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {};
+     appRoutes.addAll({ 'home' : ( BuildContext context ) => const HomeScreen() });
     for (final element in menuOptions) {
       appRoutes
           .addAll({element.route: (BuildContext context) => element.screen});
