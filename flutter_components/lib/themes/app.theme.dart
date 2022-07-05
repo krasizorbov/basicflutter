@@ -9,18 +9,23 @@ class AppTheme {
       appBarTheme: const AppBarTheme(
         color: primary,
         elevation: 0,
-      ));
-
-      static final ThemeData darkTheme = ThemeData.dark().copyWith(
-      // Color primary
-      primaryColor: Colors.indigo,
-      // Appbar theme
-      appBarTheme: const AppBarTheme(
-        color: primary,
-        elevation: 0,
-        
       ),
-        scaffoldBackgroundColor: Colors.black87
-      );
+      // TextButton theme
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(primary: primary)
+      )
+    );
+      
+  static final ThemeData darkTheme = ThemeData.dark().copyWith(
+  // Color primary
+  primaryColor: Colors.indigo,
+  // Appbar theme
+  appBarTheme: const AppBarTheme(
+    color: primary,
+    elevation: 0,
+    
+  ),
+    scaffoldBackgroundColor: Colors.black87
+  );
       
 }
