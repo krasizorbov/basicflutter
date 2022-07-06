@@ -15,6 +15,8 @@ class CardScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         children: const [
           CustomCardType1(),
+          SizedBox(height: 20,),
+          CustomCardType2(),
         ]
         )
       );
