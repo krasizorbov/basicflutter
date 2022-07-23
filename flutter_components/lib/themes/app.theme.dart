@@ -29,7 +29,7 @@ class AppTheme {
         ),
       ),
 
-      // Input decorattion theme
+      // Input decoration theme
       inputDecorationTheme: InputDecorationTheme(
         floatingLabelStyle: const TextStyle(color: primary),
         enabledBorder: OutlineInputBorder(
