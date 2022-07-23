@@ -16,7 +16,7 @@ class CardScreen extends StatelessWidget {
         children: const [
           CustomCardType1(),
           SizedBox(height: 10,),
-          CustomCardType2(imageName: 'beautiful car', imageUrl: 'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=pexels-mike-b-170811.jpg&fm=jpg',),
+          CustomCardType2(imageName: 'a beautiful car', imageUrl: 'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=pexels-mike-b-170811.jpg&fm=jpg',),
           SizedBox(height: 10,),
           CustomCardType2(imageName: 'a monster', imageUrl: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fGNhcnN8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',),
           SizedBox(height: 10,),
