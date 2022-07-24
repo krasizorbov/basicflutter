@@ -26,9 +26,9 @@ class CustomCardType2 extends StatelessWidget {
           ),
           if (imageName != null)
             Container(
-              alignment: AlignmentDirectional.centerEnd,
-              padding: const EdgeInsets.only(top: 10, bottom: 10, right: 20),
-              child: Text(imageName ?? 'No Title'))
+                alignment: AlignmentDirectional.centerEnd,
+                padding: const EdgeInsets.only(top: 10, bottom: 10, right: 20),
+                child: Text(imageName ?? 'No Title'))
         ],
       ),
     );

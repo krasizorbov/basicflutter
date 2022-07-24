@@ -59,28 +59,28 @@ class InputsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 DropdownButtonFormField<String>(
-                    items: const [
-                      DropdownMenuItem(value: 'admin', child: Text('Admin')),
-                      DropdownMenuItem(value: 'superuser', child: Text('Superuser')),
-                      DropdownMenuItem(value: 'developer', child: Text('Developer')),
-                      DropdownMenuItem(value: 'jrdeveloper', child: Text('JrDeveloper')),
-                    ],
-                    onChanged: (value) {
-                      formValues['role'] = value ?? 'Admin';
-                    }),
+                  items: const [
+                    DropdownMenuItem(value: 'admin', child: Text('Admin')),
+                    DropdownMenuItem(value: 'superuser', child: Text('Superuser')),
+                    DropdownMenuItem(value: 'developer', child: Text('Developer')),
+                    DropdownMenuItem(value: 'jrdeveloper', child: Text('JrDeveloper')),
+                  ],
+                  onChanged: (value) {
+                    formValues['role'] = value ?? 'Admin';
+                  }),
                 const SizedBox(height: 30),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                      onPressed: () {
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        if (!formKey.currentState!.validate()) {
-                          print('Form is not valid!');
-                          return;
-                        }
-                        print(formValues);
-                      },
-                      child: const Center(child: Text('Save'))),
+                    onPressed: () {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      if (!formKey.currentState!.validate()) {
+                        print('Form is not valid!');
+                        return;
+                      }
+                      print(formValues);
+                    },
+                    child: const Center(child: Text('Save'))),
                 ),
               ],
             ),

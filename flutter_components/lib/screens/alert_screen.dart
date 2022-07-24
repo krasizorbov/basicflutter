@@ -14,16 +14,14 @@ class AlertScreen extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Cancel', style: TextStyle(color: Colors.red))
-              ),
+                child: const Text('Cancel', style: TextStyle(color: Colors.red))),
               TextButton(
                 onPressed: () => Navigator.pop(context),
                 child: const Text('OK'),
               ),
             ],
             elevation: 5,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadiusDirectional.circular(10)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(10)),
             title: const Text('IOS'),
             content: Column(mainAxisSize: MainAxisSize.min, children: const [
               Text('This is the content of the alert!'),
@@ -43,16 +41,11 @@ class AlertScreen extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Cancel', style: TextStyle(color: Colors.red))
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('OK')
-              ),
+                child: const Text('Cancel', style: TextStyle(color: Colors.red))),
+              TextButton(onPressed: () => Navigator.pop(context), child: const Text('OK')),
             ],
             elevation: 5,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadiusDirectional.circular(10)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(10)),
             title: const Text('Android'),
             content: Column(mainAxisSize: MainAxisSize.min, children: const [
               Text('This is the content of the alert!'),
@@ -70,21 +63,15 @@ class AlertScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                primary: Colors.red,
-                shape: const StadiumBorder(),
-                elevation: 10),
-            onPressed: () => Platform.isAndroid ? 
-              displayDialogAndroid(context) :
-              displayDialogIOS(context),
+            style: ElevatedButton.styleFrom(primary: Colors.red, shape: const StadiumBorder(), elevation: 10),
+            onPressed: () => Platform.isAndroid ? displayDialogAndroid(context) : displayDialogIOS(context),
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Text('Show Alert', style: TextStyle(fontSize: 16)),
             )),
       ),
-      floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.close),
-          onPressed: () => Navigator.pop(context)),
+      floatingActionButton:
+        FloatingActionButton(child: const Icon(Icons.close), onPressed: () => Navigator.pop(context)),
     );
   }
 }

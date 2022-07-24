@@ -1,7 +1,6 @@
 import 'package:basic_counter/screens/counter_screen.dart';
 import 'package:flutter/material.dart';
 
-
 void main() {
   runApp(const MyApp());
 }

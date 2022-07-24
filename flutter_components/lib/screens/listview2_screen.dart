@@ -10,7 +10,7 @@ class Listview2Screen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('List View 1'),
-          elevation:  0,
+          elevation: 0,
         ),
         body: ListView.separated(
           itemBuilder: (BuildContext context, int index) {

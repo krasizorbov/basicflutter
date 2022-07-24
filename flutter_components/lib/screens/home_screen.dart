@@ -12,13 +12,9 @@ class HomeScreen extends StatelessWidget {
       body: ListView.separated(
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
-              leading: Icon(
-                AppRoutes.menuOptions[index].icon,
-                color: AppTheme.primary
-                ),
+              leading: Icon(AppRoutes.menuOptions[index].icon, color: AppTheme.primary),
               title: Text(AppRoutes.menuOptions[index].name),
-              trailing: const Icon(Icons.arrow_circle_right_outlined,
-                  color: AppTheme.primary),
+              trailing: const Icon(Icons.arrow_circle_right_outlined, color: AppTheme.primary),
               onTap: () {
                 Navigator.pushNamed(context, AppRoutes.menuOptions[index].route);
               },

@@ -13,14 +13,14 @@ class Listview1Screen extends StatelessWidget {
         ),
         body: ListView(
           children: [
-            ...options.map((e) => ListTile(
-              leading: const Icon(Icons.list_alt_rounded),
-              title: Text(e),
-              trailing: const Icon(Icons.arrow_right_rounded),
-            )).toList(),
-            
+            ...options
+                .map((e) => ListTile(
+                      leading: const Icon(Icons.list_alt_rounded),
+                      title: Text(e),
+                      trailing: const Icon(Icons.arrow_right_rounded),
+                    ))
+                .toList(),
           ],
-          
         ));
   }
 }

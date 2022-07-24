@@ -17,8 +17,7 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
   void initState() {
     super.initState();
     scrollController.addListener(() {
-      if ((scrollController.position.pixels + 500) >=
-          scrollController.position.maxScrollExtent) {
+      if ((scrollController.position.pixels + 500) >= scrollController.position.maxScrollExtent) {
         fetchData();
       }
     });
@@ -34,11 +33,9 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
     add5();
     isLoading = false;
     setState(() {});
-    if (scrollController.position.pixels + 100 <=
-        scrollController.position.maxScrollExtent) return;
+    if (scrollController.position.pixels + 100 <= scrollController.position.maxScrollExtent) return;
     scrollController.animateTo(scrollController.position.pixels + 120,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.fastOutSlowIn);
+        duration: const Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
   }
 
   void add5() {
@@ -76,17 +73,11 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
                         width: double.infinity,
                         height: 300,
                         fit: BoxFit.fill,
-                        placeholder:
-                            const AssetImage('assets/Loading_icon.gif'),
-                        image: NetworkImage(
-                            'https://picsum.photos/500/300?image=${imagesIDs[index]}'));
+                        placeholder: const AssetImage('assets/Loading_icon.gif'),
+                        image: NetworkImage('https://picsum.photos/500/300?image=${imagesIDs[index]}'));
                   }),
             ),
-            if (isLoading)
-              Positioned(
-                  bottom: 40,
-                  left: size.width * 0.5 - 30,
-                  child: const _LoadingIcon()),
+            if (isLoading) Positioned(bottom: 40, left: size.width * 0.5 - 30, child: const _LoadingIcon()),
           ],
         ),
       ),
@@ -105,8 +96,7 @@ class _LoadingIcon extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       width: 60,
       height: 60,
-      decoration:
-          const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+      decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
       child: const CircularProgressIndicator(
         color: AppTheme.primary,
       ),

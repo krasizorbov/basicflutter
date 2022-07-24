@@ -55,9 +55,8 @@ class CustomInputField extends StatelessWidget {
       },
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
-          hintText: hintText,
-          labelText: labelText,
-          suffixIcon: suffixicon == null ? null : Icon(suffixicon)),
+        hintText: hintText, labelText: labelText, suffixIcon: suffixicon == null ? null : Icon(suffixicon)
+      ),
     );
   }
 }
