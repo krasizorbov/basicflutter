@@ -48,10 +48,16 @@ class AppRoutes {
         screen: const InputsScreen(),
         icon: Icons.input_rounded
         ),
-     MenuOption(
+    MenuOption(
         route: 'slider',
         name: 'Slider and Checks',
         screen: const SliderScreen(),
+        icon: Icons.reorder_rounded
+        ),
+    MenuOption(
+        route: 'listviewbuilder',
+        name: 'Infinite Scroll And Pull Refresh',
+        screen: const ListViewBuilderScreen(),
         icon: Icons.reorder_rounded
         ),
   ];
