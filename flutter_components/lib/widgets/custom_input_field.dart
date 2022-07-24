@@ -43,14 +43,14 @@ class CustomInputField extends StatelessWidget {
         if (formProperty == 'lastName' && value!.length < 3) {
           return 'Last name must be at least 3 characters long!';
         }
+        // ToDo logic for invalid email: regex for example!
         if (formProperty == 'email' && value == '') {
           return 'Email is required!';
         }
-        // ToDo logic for invalid email: regex for example!
+        // ToDo logic for invalid password: regex for example!
         if (formProperty == 'password' && value == '') {
           return 'Password is required!';
         }
-        // ToDo logic for invalid password: regex for example!
         return null;
       },
       autovalidateMode: AutovalidateMode.onUserInteraction,
