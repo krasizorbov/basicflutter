@@ -4,11 +4,20 @@ class CustomInputField extends StatelessWidget {
   final String? hintText;
   final String? labelText;
   final IconData? suffixicon;
+  final TextInputType? keyboardType;
+  final bool obscureText;
+  final String formProperty;
+  final Map<String, String> formValues;
+
   const CustomInputField({
     Key? key,
     this.hintText,
-    this.labelText, 
+    this.labelText,
     this.suffixicon,
+    this.keyboardType,
+    this.obscureText = false,
+    required this.formProperty,
+    required this.formValues,
   }) : super(key: key);
 
   @override
@@ -16,31 +25,39 @@ class CustomInputField extends StatelessWidget {
     return TextFormField(
       autofocus: true,
       textCapitalization: TextCapitalization.words,
+      keyboardType: keyboardType,
+      obscureText: obscureText,
       onChanged: (value) {
-        print(value);
+        formValues[formProperty] = value;
       },
       validator: (value) {
-        if (value == null) {
-          return 'This field is required!';
+        if (formProperty == 'firstName' && value == '') {
+          return 'First name is required!';
         }
-        return value.length < 3
-            ? 'Username must be at least 3 characters long!'
-            : null;
+        if (formProperty == 'firstName' && value!.length < 3) {
+          return 'First name must be at least 3 characters long!';
+        }
+        if (formProperty == 'lastName' && value == '') {
+          return 'Last name is required!';
+        }
+        if (formProperty == 'lastName' && value!.length < 3) {
+          return 'Last name must be at least 3 characters long!';
+        }
+        if (formProperty == 'email' && value == '') {
+          return 'Email is required!';
+        }
+        // ToDo logic for invalid email: regex for example!
+        if (formProperty == 'password' && value == '') {
+          return 'Password is required!';
+        }
+        // ToDo logic for invalid password: regex for example!
+        return null;
       },
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
-        hintText: hintText,
-        labelText: labelText,
-        suffixIcon: suffixicon == null ? null : Icon(suffixicon),
-        // focusedBorder: const OutlineInputBorder(
-        //   borderSide: BorderSide(
-        //     color: Colors.black87
-        //   )
-        // ),
-        // border: OutlineInputBorder(
-        //   borderRadius: BorderRadius.circular(10)
-        // )
-      ),
+          hintText: hintText,
+          labelText: labelText,
+          suffixIcon: suffixicon == null ? null : Icon(suffixicon)),
     );
   }
 }
