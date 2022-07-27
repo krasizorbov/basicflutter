@@ -12,11 +12,12 @@ class MovieSlider extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-              padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-              child: Text(
-                'Popular',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              )),
+            padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+            child: Text(
+              'Popular',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -56,7 +57,7 @@ class _MoviePoster extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           const Text('lkhoihods sdoif sdoishcos sdoish doisdoi sodivshov sovihdv so sodvov h',
-          maxLines: 2,
+            maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
           )
