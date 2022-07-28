@@ -25,13 +25,19 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              // CardSwiper
+
               CardSwiper(movies: movieProvider.onDisplayMovies),
               const SizedBox(
                 height: 20,
               ),
-              // List of movies
-              MovieSlider(movies: movieProvider.popularMovies, title: 'Populares')
+
+              MovieSlider(
+                movies: movieProvider.popularMovies,
+                title: 'Popular',
+                onNextPage: () {
+                  movieProvider.getPopularMovies();
+                },
+              )
             ],
           ),
         ));
