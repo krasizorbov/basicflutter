@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                 height: 20,
               ),
               // List of movies
-              const MovieSlider()
+              MovieSlider(movies: movieProvider.popularMovies, title: 'Populares')
             ],
           ),
         ));

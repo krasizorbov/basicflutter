@@ -1,28 +1,34 @@
 import 'package:flutter/material.dart';
 
+import '../models/models.dart';
+
 class MovieSlider extends StatelessWidget {
-  const MovieSlider({Key? key}) : super(key: key);
+  final List<Movie> movies;
+  final String? title;
+  
+  const MovieSlider({Key? key, required this.movies, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: 260,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+          if(title != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
             child: Text(
-              'Popular',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              title!,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 20,
-              itemBuilder: (contecxt, index) => const _MoviePoster(),
+              itemCount: movies.length,
+              itemBuilder: (contecxt, index) => _MoviePoster(movies[index]),
             ),
           )
         ],
@@ -32,7 +38,8 @@ class MovieSlider extends StatelessWidget {
 }
 
 class _MoviePoster extends StatelessWidget {
-  const _MoviePoster({Key? key}) : super(key: key);
+  final Movie movie;
+  const _MoviePoster(this.movie, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +50,13 @@ class _MoviePoster extends StatelessWidget {
       child: Column(
         children: [
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, 'details', arguments: 'movies-in-cinema'),
+            onTap: () => Navigator.pushNamed(context, 'details',
+                arguments: 'movies-in-cinema'),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
-              child: const FadeInImage(
-                placeholder: AssetImage('assets/no-image.jpg'), 
-                image: NetworkImage('https://via.placeholder.com/300x400'),
+              child: FadeInImage(
+                placeholder: const AssetImage('assets/no-image.jpg'),
+                image: NetworkImage(movie.fullPosterPath),
                 width: 130,
                 height: 160,
                 fit: BoxFit.cover,
@@ -56,7 +64,8 @@ class _MoviePoster extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          const Text('lkhoihods sdoif sdoishcos sdoish doisdoi sodivshov sovihdv so sodvov h',
+          Text(
+            movie.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
