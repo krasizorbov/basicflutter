@@ -6,6 +6,7 @@ class MoviesProvider extends ChangeNotifier {
   final String _baseUrl = 'api.themoviedb.org';
   final String _apiKey = '846eeb2a662318c46ad000b08cdd7c98';
   final String _language = 'en-US';
+  late List<Movie> onDisplayMovies = [];
 
   MoviesProvider() {
     print('From movies provider');
@@ -20,6 +21,7 @@ class MoviesProvider extends ChangeNotifier {
     if (response.statusCode != 200) {
       return print('Error');
     }
-    print(nowPlayingResponse.results[0].originalTitle);
+    onDisplayMovies = nowPlayingResponse.results;
+    notifyListeners();
   }
 }
