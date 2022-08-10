@@ -1,6 +1,7 @@
-import 'dart:ffi';
+
 import 'dart:io';
 
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 import 'package:qr_scanner/models/scan_model.dart';
 import 'package:sqflite/sqflite.dart';

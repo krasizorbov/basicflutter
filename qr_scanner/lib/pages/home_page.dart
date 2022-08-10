@@ -4,6 +4,7 @@ import 'package:qr_scanner/models/scan_model.dart';
 import 'package:qr_scanner/pages/directions_page.dart';
 import 'package:qr_scanner/pages/maps_page.dart';
 import 'package:qr_scanner/providers/db_provider.dart';
+import 'package:qr_scanner/providers/scan_list_provider.dart';
 import 'package:qr_scanner/widgets/custom_navigation_bar.dart';
 import 'package:qr_scanner/widgets/scann_button.dart';
 
@@ -37,14 +38,13 @@ class _HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final uiProvider = Provider.of<UIProvider>(context);
     int currentIndex = uiProvider.selectedMenuItem;
-    // Read database
-    final tempScan = ScanModel(value: 'https://krasizorbov.com');
-    //DBProvider.db.newScan(tempScan);
-    //DBProvider.db.getAllScans().then((value) => print(value.toString()));
+    final scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
     switch (currentIndex) {
       case 0:
+      scanListProvider.getScanByType('geo');
         return const MapsPage();
       case 1:
+      scanListProvider.getScanByType('http');
         return const DirectionsPage();
       default:
         return const MapsPage();
