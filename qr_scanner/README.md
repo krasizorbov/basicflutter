@@ -6,10 +6,11 @@ A new Flutter project.
 
 This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+A few resources to get you started with this project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [Flutter Pub Dev: Provider - for state management](https://pub.dev/packages/provider/install)
+- [Flutter Pub Dev: Bar code scanner](https://pub.dev/packages/flutter_barcode_scanner)
+- [QR Code Generator: QR code generator](https://www.qrcode.es/es/generador-qr-code/)
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
