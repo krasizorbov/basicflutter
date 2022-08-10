@@ -20,8 +20,8 @@ class ScanListProvider extends ChangeNotifier{
   }
 
   getScans() async {
-    List<ScanModel> scans = await DBProvider.db.getAllScans();
-    scans = [...scans];
+    List<ScanModel> allScans = await DBProvider.db.getAllScans();
+    scans = [...allScans];
     notifyListeners();
   }
 
