@@ -15,12 +15,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scanListProvider = Provider.of<ScanListProvider>(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         title: const Text('History'),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.delete_forever))
+          IconButton(
+              onPressed: () {
+                scanListProvider.deleteAll();
+              },
+              icon: const Icon(Icons.delete_forever))
         ],
       ),
       body: const _HomeBody(),
@@ -38,13 +43,14 @@ class _HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final uiProvider = Provider.of<UIProvider>(context);
     int currentIndex = uiProvider.selectedMenuItem;
-    final scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
+    final scanListProvider =
+        Provider.of<ScanListProvider>(context, listen: false);
     switch (currentIndex) {
       case 0:
-      scanListProvider.getScanByType('geo');
+        scanListProvider.getScanByType('geo');
         return const MapsPage();
       case 1:
-      scanListProvider.getScanByType('http');
+        scanListProvider.getScanByType('http');
         return const DirectionsPage();
       default:
         return const MapsPage();

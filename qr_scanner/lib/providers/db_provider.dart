@@ -26,7 +26,7 @@ class DBProvider {
     // Phisical path to the database using path provider dependency
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join( documentsDirectory.path, 'ScansDB.db' );
-    print( path );
+    // print( path );
 
     // Create database using SQFlite dependency
     return await openDatabase(

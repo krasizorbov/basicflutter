@@ -13,6 +13,8 @@ A few resources to get you started with this project:
 - [QR Code Generator: QR code generator](https://www.qrcode.es/es/generador-qr-code/)
 - [Flutter Pub Dev: Path provider](https://pub.dev/packages/path_provider#-installing-tab-)
 - [Flutter Pub Dev: SQFLite](https://pub.dev/packages/sqflite#-readme-tab-)
+- [Flutter Pub Dev: URL Launcher](https://pub.dev/packages/url_launcher)
+- [Flutter Pub Dev: Google maps](https://pub.dev/packages/google_maps_flutter)
 - [SQLite: SQLite](https://sqlitebrowser.org/dl/)
 
 For help getting started with Flutter development, view the

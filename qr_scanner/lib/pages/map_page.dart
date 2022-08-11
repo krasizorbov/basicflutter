@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qr_scanner/models/scan_model.dart';
 
 class MapPage extends StatelessWidget {
    
@@ -6,9 +7,13 @@ class MapPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    final ScanModel scan = ModalRoute.of(context)!.settings.arguments as ScanModel;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Coordinates'),
+      ),
       body: Center(
-         child: Text('MapPage'),
+         child: Text(scan.value),
       ),
     );
   }
