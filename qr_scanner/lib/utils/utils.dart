@@ -7,6 +7,8 @@ launchURL( BuildContext context, ScanModel scan  ) async {
 
   if ( scan.type == 'http' ) {
     // Go to web page
+    // There is a problem with canLaunchUrl so put this line of code in AndroidManifest.xml
+    // <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
