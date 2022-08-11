@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_scanner/models/scan_model.dart';
 import 'package:qr_scanner/pages/directions_page.dart';
 import 'package:qr_scanner/pages/maps_page.dart';
-import 'package:qr_scanner/providers/db_provider.dart';
 import 'package:qr_scanner/providers/scan_list_provider.dart';
 import 'package:qr_scanner/widgets/custom_navigation_bar.dart';
 import 'package:qr_scanner/widgets/scann_button.dart';

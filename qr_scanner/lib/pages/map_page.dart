@@ -19,23 +19,59 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     final ScanModel scan = ModalRoute.of(context)!.settings.arguments as ScanModel;
 
-    const CameraPosition inicialPoint = CameraPosition(
-      target: LatLng(37.42796133580664, -122.085749655962), // scan.getLatLng(),
+    CameraPosition inicialPoint = CameraPosition(
+      target: scan.getLatLng(),
       zoom: 17.5,
       tilt: 50
     );
+
+    // Markers
+    Set<Marker> markers = <Marker>{};
+    markers.add(Marker(
+      markerId: const MarkerId('geo-location'),
+      position: scan.getLatLng()
+    ));
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Coordinates'),
+        actions: [
+          IconButton(
+            icon: const Icon( Icons.location_disabled), 
+            onPressed: () async {
+              final GoogleMapController controller = await _controller.future;
+              controller.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: scan.getLatLng(),
+                    zoom: 17.5,
+                    tilt: 50
+                  )
+                )
+              );
+            }
+          )
+        ],
       ),
       body: GoogleMap(
         myLocationButtonEnabled: false,
         mapType: mapType,
-        //markers: markers,
+        markers: markers,
         initialCameraPosition: inicialPoint,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon( Icons.layers ),
+        onPressed: () {
+          if ( mapType == MapType.normal ) {
+            mapType = MapType.satellite;
+          } else {
+            mapType = MapType.normal;
+          }
+          setState(() {});
+        }
       ),
     );
   }
