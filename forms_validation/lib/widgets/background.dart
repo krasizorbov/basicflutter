@@ -15,7 +15,7 @@ class Background extends StatelessWidget {
           SafeArea(
             child: Container(
               width: double.infinity,
-              margin: const EdgeInsets.only(top: 50),
+              margin: const EdgeInsets.only(top: 10),
               child: const Icon(
                 Icons.person_pin,
                 color: Colors.white,
