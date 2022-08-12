@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:forms_validation/providers/login_form_provider.dart';
 import 'package:forms_validation/ui/input_decorations.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/widgets.dart';
 
@@ -23,7 +25,10 @@ class LoginScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline4,
                     ),
                     const SizedBox(height: 30),
-                    const _LoginForm()
+                    ChangeNotifierProvider(
+                      create: ((context) => LoginFormProvider()),
+                      child: const _LoginForm(),
+                    ),
                   ],
                 ),
               ),
@@ -46,35 +51,66 @@ class _LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final logingFormProvider = Provider.of<LoginFormProvider>(context);
     return Container(
       child: Form(
+        key: logingFormProvider.formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
             TextFormField(
+              onChanged: (value) => logingFormProvider.email = value,
               autocorrect: false,
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecorations.inputDecoration(labelText: 'Email', suffixIcon: Icons.email_outlined)
+              decoration: InputDecorations.inputDecoration(
+                  labelText: 'Email', suffixIcon: Icons.email_outlined),
+              validator: (value) {
+                String pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regExp = RegExp(pattern);
+                return regExp.hasMatch(value ?? '')
+                    ? null
+                    : 'Email is not valid!';
+              },
             ),
             const SizedBox(height: 30),
             TextFormField(
+              onChanged: (value) => logingFormProvider.password = value,
               autocorrect: false,
               obscureText: true,
               keyboardType: TextInputType.visiblePassword,
-              decoration: InputDecorations.inputDecoration(labelText: 'Password', suffixIcon: Icons.lock_open_rounded)
+              decoration: InputDecorations.inputDecoration(
+                  labelText: 'Password', suffixIcon: Icons.lock_open_rounded),
+              validator: (value) {
+                if (value != null && value.length >= 6) {
+                  return null;
+                } else {
+                  return 'Password must be at least 6 characters long!';
+                }
+              },
             ),
             const SizedBox(height: 30),
             MaterialButton(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)
-              ),
+                  borderRadius: BorderRadius.circular(10)),
               disabledColor: Colors.grey,
               elevation: 0,
               color: Colors.deepPurple,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                child: const Text('Login', style: TextStyle(color: Colors.white),),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                child: const Text(
+                  'Login',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-              onPressed: () {   }, // ToDo login logic
+              onPressed: () {
+                if (!logingFormProvider.isValidForm()) {
+                  return;
+                } else {
+                  Navigator.pushReplacementNamed(context, 'home');
+                }
+              },
             ),
           ],
         ),
