@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:forms_validation/providers/login_form_provider.dart';
 import 'package:forms_validation/ui/input_decorations.dart';
@@ -96,21 +98,29 @@ class _LoginForm extends StatelessWidget {
               disabledColor: Colors.grey,
               elevation: 0,
               color: Colors.deepPurple,
+              onPressed: logingFormProvider.isLoading
+                  ? null
+                  : () async {
+                      // Remove the keyboard
+                      FocusScope.of(context).unfocus();
+                      if (!logingFormProvider.isValidForm()) {
+                        return;
+                      } else {
+                        logingFormProvider.isLoading = true;
+                        await Future.delayed(const Duration(milliseconds: 2000));
+                        logingFormProvider.isLoading = false;
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushReplacementNamed(context, 'home');
+                      }
+                    },
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                child: const Text(
-                  'Login',
-                  style: TextStyle(color: Colors.white),
+                child: Text(
+                  logingFormProvider.isLoading ? 'Please wait...' : 'Login',
+                  style: const TextStyle(color: Colors.white),
                 ),
               ),
-              onPressed: () {
-                if (!logingFormProvider.isValidForm()) {
-                  return;
-                } else {
-                  Navigator.pushReplacementNamed(context, 'home');
-                }
-              },
             ),
           ],
         ),
