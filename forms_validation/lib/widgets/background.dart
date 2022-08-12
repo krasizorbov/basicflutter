@@ -9,19 +9,20 @@ class Background extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      child: Stack(children: [
-        const _PurpleBox(),
-        SafeArea(
-          child: Container(
-            width: double.infinity,
-            margin: const EdgeInsets.only(top: 50),
-            child: const Icon(
-              Icons.person_pin,
-              color: Colors.white,
-              size: 100,
+      child: Stack(
+        children: [
+          const _PurpleBox(),
+          SafeArea(
+            child: Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(top: 50),
+              child: const Icon(
+                Icons.person_pin,
+                color: Colors.white,
+                size: 100,
+              ),
             ),
           ),
-        ),
         child
       ]),
     );
