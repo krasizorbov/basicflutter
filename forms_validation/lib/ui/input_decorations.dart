@@ -7,7 +7,6 @@ class InputDecorations {
   }) {
     return InputDecoration(
       enabledBorder: const UnderlineInputBorder(
-        // ignore: unnecessary_const
         borderSide: BorderSide(color: Colors.indigo),
       ),
       focusedBorder: const UnderlineInputBorder(
