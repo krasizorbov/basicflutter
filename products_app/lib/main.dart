@@ -17,13 +17,21 @@ class MyApp extends StatelessWidget {
           title: const Text('Material App Bar'),
         ),
       ),
-      initialRoute: 'login',
+      initialRoute: 'home',
       routes: {
         'home':(context) => const HomeScreen(),
         'login':(context) => const LoginScreen()
       },
       theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: Colors.grey[300]
+        scaffoldBackgroundColor: Colors.grey[300],
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          color: Colors.indigo
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.indigo,
+          elevation: 0,
+        )
       ),
     );
   }
