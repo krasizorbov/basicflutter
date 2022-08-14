@@ -157,12 +157,14 @@ class _BackgroundImage extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 400,
-        child: FadeInImage(
-          placeholder: const AssetImage('assets/no-image.png'),
-          // Fix products without picture
-          image: NetworkImage(url!),
-          fit: BoxFit.cover,
-        ),
+        child: url == null ? const Image(image: AssetImage('assets/no-image.png'), fit: BoxFit.cover,) 
+          :
+          FadeInImage(
+            placeholder: const AssetImage('assets/no-image.png'),
+            // Fix products without picture
+            image: NetworkImage(url!),
+            fit: BoxFit.cover,
+          ),
       ),
     );
   }
