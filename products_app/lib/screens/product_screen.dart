@@ -5,6 +5,7 @@ import 'package:products_app/services/products_service.dart';
 import 'package:products_app/ui/input_decorations.dart';
 import 'package:products_app/widgets/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({Key? key}) : super(key: key);
@@ -37,7 +38,7 @@ class _ProductScreenBody extends StatelessWidget {
           children: [
             Stack(
               children: [
-                ProductImage(productService.selectedProduct.picture),
+                ProductImage(url: productService.selectedProduct.picture),
                 Positioned(
                   top: 30,
                   left: 30,
@@ -54,8 +55,20 @@ class _ProductScreenBody extends StatelessWidget {
                   top: 30,
                   right: 30,
                   child: IconButton(
-                      onPressed: () {
-                        // Cam logic goes here
+                      onPressed: () async {
+                        final picker = ImagePicker();
+                        final XFile? pickedFile = await picker.pickImage(
+                            // source: ImageSource.gallery,
+                            // camara does't work with ios for some reason!!!
+                            source: ImageSource.camera,
+                            imageQuality: 100);
+
+                        if (pickedFile == null) {
+                          print('Nothing has been selected');
+                          return;
+                        }
+                        productService
+                            .updateSelectedProductImage(pickedFile.path);
                       },
                       icon: const Icon(
                         Icons.camera_alt_rounded,
@@ -72,13 +85,17 @@ class _ProductScreenBody extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
+        onPressed: productService.isSaving 
+          ? null
+          : () async {
           if (!productForm.isValidForm()) return;
+          final String? imageUrl = await productService.uploadImage();
+          if ( imageUrl != null ) productForm.product.picture = imageUrl;
           await productService.saveOrCreateProduct(productForm.product);
-        }, // ToDo saving logic to firebase
-        child: const Icon(
-          Icons.save_as_outlined,
-        ),
+        },
+        child: productService.isSaving 
+          ? const CircularProgressIndicator( color: Colors.white )
+          : const Icon( Icons.save_outlined ),
       ),
     );
   }

@@ -1,8 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class ProductImage extends StatelessWidget {
   final String? url;
-  const ProductImage(this.url, {Key? key}) : super(key: key);
+  const ProductImage({Key? key, this.url}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +16,7 @@ class ProductImage extends StatelessWidget {
         decoration: _boxDecoration(),
         child: ClipRRect(
           borderRadius: const BorderRadius.only(topLeft: Radius.circular(45), topRight: Radius.circular(45)),
-          child: url == null ? const Image(image: AssetImage('assets/no-image.png',), fit: BoxFit.cover,) 
-          : FadeInImage(
-            placeholder: const AssetImage('assets/no-image.png'),
-            image: NetworkImage(url!),
-            fit: BoxFit.cover,
-          ),
+          child: getImage(url),
         ),
       ),
     );
@@ -35,4 +32,28 @@ class ProductImage extends StatelessWidget {
                 blurRadius: 10,
                 offset: const Offset(0, 5)),
           ]);
+
+  Widget getImage( String? picture ) {
+    if ( picture == null ) {
+      return const Image(
+          image: AssetImage('assets/no-image.png'),
+          fit: BoxFit.cover,
+        );
+    }
+
+    if ( picture.startsWith('http') ) {
+      return FadeInImage(
+          image: NetworkImage( url!),
+          placeholder: const AssetImage('assets/loading_icon.gif'),
+          fit: BoxFit.cover,
+        );
+    }
+
+    return Image.file(
+      File( picture ),
+      fit: BoxFit.cover,
+    );
+  }
 }
+
+

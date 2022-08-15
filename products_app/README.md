@@ -6,10 +6,11 @@ A new Flutter project.
 
 This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+A few resources to get you started if this Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [Flutter Pub Dev: image_picker: ^0.8.5+3](https://pub.dev/packages/image_picker)
+- [Flutter Pub Dev: provider: ^6.0.3](https://pub.dev/packages/provider)
+- [Flutter Pub Dev: http: ^0.13.5](https://pub.dev/packages/http)
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,

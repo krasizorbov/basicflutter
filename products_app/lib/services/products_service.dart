@@ -91,7 +91,7 @@ class ProductsService extends ChangeNotifier {
     isSaving = true;
     notifyListeners();
     // Get cloudinary credentials
-    final url = Uri.parse('');
+    final url = Uri.parse('https://api.cloudinary.com/v1_1/racoon6/image/upload?upload_preset=racoon6_preset');
 
     final imageUploadRequest = http.MultipartRequest('POST', url);
 
@@ -104,7 +104,7 @@ class ProductsService extends ChangeNotifier {
     final resp = await http.Response.fromStream(streamResponse);
 
     if (resp.statusCode != 200 && resp.statusCode != 201) {
-      print('algo salio mal');
+      print('error');
       print(resp.body);
       return null;
     }
