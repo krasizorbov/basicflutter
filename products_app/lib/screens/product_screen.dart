@@ -30,6 +30,7 @@ class _ProductScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productForm = Provider.of<ProductFormProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -71,7 +72,10 @@ class _ProductScreenBody extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {}, // ToDo saving logic to firebase
+        onPressed: () async {
+          if (!productForm.isValidForm()) return;
+          await productService.saveOrCreateProduct(productForm.product);
+        }, // ToDo saving logic to firebase
         child: const Icon(
           Icons.save_as_outlined,
         ),
@@ -95,6 +99,8 @@ class _ProductForm extends StatelessWidget {
         width: double.infinity,
         decoration: _boxDecoration(),
         child: Form(
+          key: productForm.formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
@@ -120,7 +126,8 @@ class _ProductForm extends StatelessWidget {
                 TextFormField(
                   initialValue: product.price.toString(),
                   inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}'))
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'^(\d+)?\.?\d{0,2}'))
                   ],
                   onChanged: (value) {
                     if (double.tryParse(value) != null) {
@@ -137,11 +144,12 @@ class _ProductForm extends StatelessWidget {
                   height: 30,
                 ),
                 SwitchListTile.adaptive(
-                    title: const Text('Available'),
-                    activeColor: Colors.indigo,
-                    value: product.available,
-                    onChanged: productForm.updateAvailability,// Implement switch logic
-                    ),
+                  title: const Text('Available'),
+                  activeColor: Colors.indigo,
+                  value: product.available,
+                  onChanged:
+                      productForm.updateAvailability, // Implement switch logic
+                ),
                 const SizedBox(
                   height: 30,
                 ),
