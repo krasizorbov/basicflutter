@@ -58,9 +58,9 @@ class _ProductScreenBody extends StatelessWidget {
                       onPressed: () async {
                         final picker = ImagePicker();
                         final XFile? pickedFile = await picker.pickImage(
-                            source: ImageSource.gallery,
+                            // source: ImageSource.gallery,
                             // camara does't work with ios for some reason!!!
-                            // source: ImageSource.camera,
+                            source: ImageSource.camera,
                             imageQuality: 100);
 
                         if (pickedFile == null) {
