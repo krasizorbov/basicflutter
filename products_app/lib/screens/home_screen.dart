@@ -12,11 +12,21 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productService = Provider.of<ProductsService>(context);
+    final authService = Provider.of<AuthService>(context, listen: false);
     if (productService.isLoading) {
       return const LoadingScreen();
     }
     return Scaffold(
-      appBar: AppBar(title: const Text('Products')),
+      appBar: AppBar(
+        title: const Text('Products'),
+        leading: IconButton(
+          icon: const Icon(Icons.logout_rounded),
+          onPressed: () {
+            authService.logout();
+            Navigator.pushReplacementNamed(context, 'login');
+          },
+        ),
+      ),
       body: ListView.builder(
         itemCount: productService.products.length,
         itemBuilder: ((context, index) => GestureDetector(
@@ -32,11 +42,8 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          productService.selectedProduct = Product(
-            available: false, 
-            name: '', 
-            price: 0.00
-          );
+          productService.selectedProduct =
+              Product(available: false, name: '', price: 0.00);
           Navigator.pushNamed(context, 'product');
         },
       ),

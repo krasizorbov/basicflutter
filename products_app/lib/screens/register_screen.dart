@@ -5,8 +5,8 @@ import 'package:products_app/ui/input_decorations.dart';
 import 'package:products_app/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     const SizedBox(height: 10),
                     Text(
-                      'Login',
+                      'Register',
                       style: Theme.of(context).textTheme.headline4,
                     ),
                     const SizedBox(height: 30),
@@ -38,9 +38,9 @@ class LoginScreen extends StatelessWidget {
                     overlayColor: MaterialStateProperty.all(
                         Colors.indigo.withOpacity(0.5))),
                 onPressed: () =>
-                    Navigator.pushReplacementNamed(context, 'register'),
+                    Navigator.pushReplacementNamed(context, 'login'),
                 child: const Text(
-                  "Don't have an account? Please register!",
+                  "Already have an account? Please login!",
                   style: TextStyle(fontSize: 16, color: Colors.black87),
                 ),
               ),
@@ -108,21 +108,19 @@ class _LoginForm extends StatelessWidget {
                   : () async {
                       // Remove the keyboard
                       FocusScope.of(context).unfocus();
-                      final authService =
-                          Provider.of<AuthService>(context, listen: false);
+                      final authService = Provider.of<AuthService>(context, listen: false);
                       if (!logingFormProvider.isValidForm()) {
                         return;
                       } else {
                         logingFormProvider.isLoading = true;
-                        String? errorMessage = await authService.login(
+                        String? errorMessage = await authService.createUser(
                             logingFormProvider.email,
                             logingFormProvider.password);
                         if (errorMessage == null) {
-                          Navigator.pushReplacementNamed(context, 'home');
+                          Navigator.pushReplacementNamed(context, 'login');
                         } else {
                           // Show eerror message!
-                          NotificationsService.showSnackbar('Wrong credentials! Please try again');
-                          logingFormProvider.isLoading = false;
+                          logingFormProvider.isLoading = false;                        
                         }
                       }
                     },
@@ -130,7 +128,7 @@ class _LoginForm extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                 child: Text(
-                  logingFormProvider.isLoading ? 'Please wait...' : 'Login',
+                  logingFormProvider.isLoading ? 'Please wait...' : 'Register',
                   style: const TextStyle(color: Colors.white),
                 ),
               ),

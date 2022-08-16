@@ -11,6 +11,7 @@ A few resources to get you started if this Flutter project:
 - [Flutter Pub Dev: image_picker: ^0.8.5+3](https://pub.dev/packages/image_picker)
 - [Flutter Pub Dev: provider: ^6.0.3](https://pub.dev/packages/provider)
 - [Flutter Pub Dev: http: ^0.13.5](https://pub.dev/packages/http)
+- [Flutter Pub Dev: flutter_secure_storage: ^5.1.0](https://pub.dev/packages/flutter_secure_storage)
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
