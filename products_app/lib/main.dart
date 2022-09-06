@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           title: const Text('Material App Bar'),
         ),
       ),
-      initialRoute: 'check',
+      initialRoute: 'login',
       routes: {
         'home': (context) => const HomeScreen(),
         'login': (context) => const LoginScreen(),
