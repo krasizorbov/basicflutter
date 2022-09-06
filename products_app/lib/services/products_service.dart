@@ -11,7 +11,7 @@ class ProductsService extends ChangeNotifier {
       'product-app-b8559-default-rtdb.europe-west1.firebasedatabase.app';
   final List<Product> products = [];
   late Product selectedProduct;
-   final storage = const FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
 
   File? newPictureFile;
 
@@ -26,13 +26,14 @@ class ProductsService extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    final url = Uri.https(_baseUrl, 'products.json', {
-      "auth": await storage.read(key: 'token') ?? ''
-    });
+    final url = Uri.https(_baseUrl, 'products.json',
+        {"auth": await storage.read(key: 'token') ?? ''});
     final resp = await http.get(url);
 
     final Map<String, dynamic> productsMap = json.decode(resp.body);
 
+    if ( productsMap['error'] != null ) return [];
+    
     productsMap.forEach((key, value) {
       final tempProduct = Product.fromMap(value);
       tempProduct.id = key;
@@ -62,9 +63,8 @@ class ProductsService extends ChangeNotifier {
   }
 
   Future<String> updateProduct(Product product) async {
-    final url = Uri.https(_baseUrl, 'products/${product.id}.json', {
-      "auth": await storage.read(key: 'token') ?? ''
-    });
+    final url = Uri.https(_baseUrl, 'products/${product.id}.json',
+        {"auth": await storage.read(key: 'token') ?? ''});
     // ignore: unused_local_variable
     final resp = await http.put(url, body: product.toJson());
     // final decodedData = resp.body;
@@ -76,9 +76,8 @@ class ProductsService extends ChangeNotifier {
   }
 
   Future<String> createProduct(Product product) async {
-    final url = Uri.https(_baseUrl, 'products.json', {
-      "auth": await storage.read(key: 'token') ?? ''
-    });
+    final url = Uri.https(_baseUrl, 'products.json',
+        {"auth": await storage.read(key: 'token') ?? ''});
     final resp = await http.post(url, body: product.toJson());
     final decodedData = json.decode(resp.body);
 
@@ -99,7 +98,8 @@ class ProductsService extends ChangeNotifier {
     isSaving = true;
     notifyListeners();
     // Get cloudinary credentials
-    final url = Uri.parse('https://api.cloudinary.com/v1_1/racoon6/image/upload?upload_preset=racoon6_preset');
+    final url = Uri.parse(
+        'https://api.cloudinary.com/v1_1/racoon6/image/upload?upload_preset=racoon6_preset');
 
     final imageUploadRequest = http.MultipartRequest('POST', url);
 

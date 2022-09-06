@@ -25,9 +25,9 @@ class CastingCards extends StatelessWidget {
           width: double.infinity,
           height: 180,
           child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: cast.length,
-              itemBuilder: (context, index) => _SingleCard(cast[index])),
+            scrollDirection: Axis.horizontal,
+            itemCount: cast.length,
+            itemBuilder: (context, index) => _SingleCard(cast[index])),
         );
       },
     );
@@ -71,3 +71,4 @@ class _SingleCard extends StatelessWidget {
     );
   }
 }
+

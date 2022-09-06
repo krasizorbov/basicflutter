@@ -47,7 +47,7 @@ class _ProductScreenBody extends StatelessWidget {
                         Navigator.of(context).pop();
                       },
                       icon: const Icon(
-                        Icons.arrow_back_ios_new,
+                        Icons.arrow_circle_left_sharp,
                         size: 40,
                       )),
                 ),
